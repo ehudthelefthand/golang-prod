@@ -18,6 +18,7 @@ WORKDIR /app
 
 # Copy required files
 COPY --from=builder /app/main .
+COPY ./app/config/credentials.yml.enc /config/credentials.yml.enc
 COPY ./start.sh /app/start.sh
 
 ENV GIN_MODE=release
