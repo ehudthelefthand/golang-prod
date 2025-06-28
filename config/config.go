@@ -7,6 +7,7 @@ import (
 
 type Config struct {
 	ServerAddress string `mapstructure:"SERVER_ADDRESS"`
+	DBURI         string `mapstructure:"DB_URI"`
 }
 
 func LoadConfig() *Config {

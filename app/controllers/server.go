@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"golang-prod/app/models"
 	"golang-prod/config"
 
 	"github.com/gin-gonic/gin"
@@ -9,12 +10,14 @@ import (
 type Server struct {
 	Router *gin.Engine
 	Config *config.Config
+	Store  models.Store
 }
 
-func NewServer(config *config.Config) *Server {
+func NewServer(config *config.Config, store models.Store) *Server {
 	serv := &Server{
 		Router: gin.Default(),
 		Config: config,
+		Store:  store,
 	}
 
 	serv.SetupRoutes()

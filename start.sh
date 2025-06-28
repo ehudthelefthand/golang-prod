@@ -9,5 +9,8 @@ if [ ! -z "$MASTER_KEY" ]; then
   chmod 600 /app/config/master.key
 fi
 
+echo "Running database migrations"
+goose --dir=db/migrate postgres $DB_URI
+
 echo "start server"
 exec "$@"
