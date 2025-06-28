@@ -1,14 +1,20 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"golang-prod/config"
+
+	"github.com/gin-gonic/gin"
+)
 
 type Server struct {
 	Router *gin.Engine
+	Config *config.Config
 }
 
-func NewServer() *Server {
+func NewServer(config *config.Config) *Server {
 	serv := &Server{
 		Router: gin.Default(),
+		Config: config,
 	}
 
 	serv.SetupRoutes()
@@ -17,5 +23,5 @@ func NewServer() *Server {
 }
 
 func (s *Server) Run() {
-	s.Router.Run()
+	s.Router.Run(s.Config.ServerAddress)
 }

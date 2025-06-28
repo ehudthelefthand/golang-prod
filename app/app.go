@@ -1,6 +1,9 @@
 package app
 
-import "golang-prod/app/controllers"
+import (
+	"golang-prod/app/controllers"
+	"golang-prod/config"
+)
 
 type App struct {
 	Server *controllers.Server
@@ -8,7 +11,9 @@ type App struct {
 
 func New() *App {
 	return &App{
-		Server: controllers.NewServer(),
+		Server: controllers.NewServer(
+			config.LoadConfig(),
+		),
 	}
 }
 
